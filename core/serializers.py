@@ -2,6 +2,9 @@ from rest_framework import serializers
 from .models import SpyCat, Target, Mission
 import requests
 from rest_framework.exceptions import ValidationError
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class SpyCatSerializer(serializers.ModelSerializer):
@@ -17,11 +20,36 @@ class TargetSerializer(serializers.ModelSerializer):
 
 
 class MissionSerializer(serializers.ModelSerializer):
-    targets = serializers.PrimaryKeyRelatedField(queryset=Target.objects.all(), many=True)
+    targets = TargetSerializer(many=True)
 
     class Meta:
         model = Mission
         fields = '__all__'
+
+    def update(self, instance, validated_data):
+        targets_data = self.context['request'].data.get('targets', [])
+        is_complete = validated_data.get('is_complete', instance.is_complete)
+
+        if not targets_data:
+            raise ValidationError("No targets provided for update.")
+
+        for target_data in targets_data:
+            target_id = target_data.get('id')
+            if not target_id:
+                raise ValidationError("Target ID is required for updates.")
+
+            try:
+                target = instance.targets.get(id=target_id)
+            except Target.DoesNotExist:
+                raise ValidationError(f"Target with id {target_id} does not exist in this mission.")
+
+            target.notes = target_data.get('notes', target.notes)
+            target.save()
+
+        instance.is_complete = is_complete
+        instance.save()
+
+        return instance
 
 
 class SpyCatSerializer(serializers.ModelSerializer):
