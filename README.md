@@ -47,7 +47,7 @@ Missions and Targets<p>
 
 <b>Installation and Setup</b><p>
 1. Clone the Repository<p>
-git clone https://github.com/your-repo-name/spy-cat-agency.git](https://github.com/YuliaShap/Spy-Cat.git<p>
+git clone https://github.com/YuliaShap/Spy-Cat.git<p>
 cd spy-cat-agency<p>
 
 2. Create and Activate a Virtual Environment<p>
