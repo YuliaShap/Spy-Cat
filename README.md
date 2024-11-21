@@ -45,25 +45,10 @@ Missions and Targets<p>
 - Third-party Integration: TheCatAPI for validating cat breeds.
 
 
-<b>Installation and Setup</b><p>
-1. Clone the Repository<p>
-git clone https://github.com/YuliaShap/Spy-Cat.git<p>
-cd spy-cat-agency<p>
+<b>Installation and Setup</b>
+<p>1. Clone the Repository</p> <p> git clone https://github.com/YuliaShap/Spy-Cat.git<br> cd spy-cat-agency </p> <p>2. Create and Activate a Virtual Environment</p> <p> python3 -m venv .venv<br> source .venv/bin/activate # On Windows, use .venv\Scripts\activate </p> <p>3. Install Dependencies</p> <p> pip install -r requirements.txt </p> <p>4. Configure Environment Variables</p> <p> Copy the `.env.example` file to `.env`:<br> cp .env.example .env<br><br> Edit `.env` with your preferred settings:<br> - SECRET_KEY: A unique key for the application.<br> - DATABASE_NAME: Your database name.<br> - DATABASE_USER: Your database username.<br> - DATABASE_PASSWORD: Your database password.<br> - DATABASE_HOST: Usually `localhost` for local development.<br> - DATABASE_PORT: Database port (default: 5432). </p> <p>5. Run Migrations</p> <p> python manage.py migrate </p> <p>6. Start the Development Server</p> <p> python manage.py runserver </p> <p>7. Access the API</p> <p> Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000) </p>
 
-2. Create and Activate a Virtual Environment<p>
 
-   python3 -m venv .venv<p>
-   source .venv/bin/activate  # On Windows, use .venv\Scripts\activate<p>
-
-3. Install Dependencies<p>
-pip install -r requirements.txt
-
-4. Run Migrations<p>
-python manage.py migrate
-5. Start the Development Server<p>
-python manage.py runserver<p>
-6. Access the API<p>
-Visit: http://127.0.0.1:8000
 
 <b>Postman Collection</b><p>
 A detailed Postman collection with all endpoints is available here<p>
